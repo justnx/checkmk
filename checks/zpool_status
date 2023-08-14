@@ -138,11 +138,11 @@ def check_zpool_status(_no_item, _no_params, info):
             continue
 
         if start_pool is True:
-            if line[1] != "ONLINE":
+            if len(line) >= 2 and line[1] != "ONLINE":
                 error_pools[line[0]] = tuple(line[1:])
                 continue
 
-            if saveint(line[4]) != 0:
+            if len(line) >= 5 and saveint(line[4]) != 0:
                 warning_pools[line[0]] = tuple(line[1:])
                 continue
 
